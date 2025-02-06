@@ -1,5 +1,5 @@
 export const defaultTableConfig: Record<string, any> = {
-  rowKey: "id",
+  rowKey: 'id',
   tableAlertRender: false,
   search: false,
   options: {
@@ -12,7 +12,7 @@ export const defaultTableConfig: Record<string, any> = {
     showSizeChanger: true,
     disabled: false,
   },
-  scroll: { x: "max-content" },
+  scroll: { x: 'max-content' },
   // form: {
   //   syncToUrl: true,
   //   syncToInitialValues: false,
@@ -21,5 +21,5 @@ export const defaultTableConfig: Record<string, any> = {
 
 export const requiredRule = {
   required: true,
-  message: "此项为必填项",
+  message: '此项为必填项',
 };

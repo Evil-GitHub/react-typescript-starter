@@ -12,29 +12,29 @@
  */
 export default [
   {
-    path: "/user",
+    path: '/user',
     layout: false,
     routes: [
       {
-        name: "login",
-        path: "/user/login",
-        component: "./User/Login",
+        name: 'login',
+        path: '/user/login',
+        component: './User/Login',
       },
     ],
   },
   {
-    path: "/dashboard",
-    name: "dashboard",
-    icon: "dashboard",
-    component: "./Dashboard",
+    path: '/dashboard',
+    name: 'dashboard',
+    icon: 'dashboard',
+    component: './Dashboard',
   },
   {
-    path: "/",
-    redirect: "/Dashboard",
+    path: '/',
+    redirect: '/Dashboard',
   },
   {
-    path: "*",
+    path: '*',
     layout: false,
-    component: "./404",
+    component: './404',
   },
 ];
