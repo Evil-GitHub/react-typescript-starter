@@ -4,6 +4,7 @@ import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons
 import { history, useModel } from '@umijs/max';
 import { Space, Spin } from 'antd';
 import { createStyles } from 'antd-style';
+import defaultSettings from 'config/defaultSettings';
 import { stringify } from 'querystring';
 import type { MenuInfo } from 'rc-menu/lib/interface';
 import React, { useCallback } from 'react';
@@ -50,7 +51,7 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
    */
   const loginOut = async () => {
     await waitTime(1000);
-    localStorage.setItem('EVIL_PRO_CLI_TOKEN', '');
+    localStorage.setItem(defaultSettings.TOKEN_KEY, '');
 
     const { search, pathname } = window.location;
     const urlParams = new URL(window.location.href).searchParams;

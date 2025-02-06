@@ -6,8 +6,10 @@ import { ProLayoutProps } from '@ant-design/pro-components';
 const defaultSettings: ProLayoutProps & {
   pwa?: boolean;
   logo?: string;
-  target?: string;
   BASE_URL?: string;
+  API_ADDRESS?: string; // openApi地址
+  REQUEST_ADDRESS?: string; // 请求地址
+  TOKEN_KEY: string;
 } = {
   BASE_URL: '',
   breakpoint: 'xxl',
@@ -42,7 +44,9 @@ const defaultSettings: ProLayoutProps & {
     autoClose: false,
     locale: false,
   },
-  target: 'http://192.168.100.102:32355',
+  API_ADDRESS: 'http://192.168.100.102:32355', // api 文档地址
+  REQUEST_ADDRESS: 'http://192.168.100.102:32355', // 请求地址
+  TOKEN_KEY: 'RKLINK_TOKEN',
 };
 
 export default defaultSettings;

@@ -16,25 +16,9 @@ const Login: React.FC = () => {
   const handleSubmit = async () => {
     await waitTime(1000);
     message.success('登录成功');
-    localStorage.setItem('EVIL_PRO_CLI_TOKEN', '123');
+    localStorage.setItem(defaultSettings.TOKEN_KEY, '123');
     history.push('/');
     window.location.reload();
-    // try {
-    //   // 登录
-    //   const res = await login(values);
-    //   const { code, data } = res || {};
-    //   if (code === 200) {
-    //     message.success('登录成功');
-    //     localStorage.setItem('EVIL_PRO_CLI_TOKEN', data?.authorization || '');
-    //     setTimeout(() => {
-    //       history.push('/');
-    //       window.location.reload();
-    //     }, 500);
-    //     return;
-    //   }
-    // } catch (error) {
-    //   console.log('🚗 🚗 🚗 ~ file: index.tsx:47 ~ handleSubmit ~ error:', error);
-    // }
   };
 
   return (

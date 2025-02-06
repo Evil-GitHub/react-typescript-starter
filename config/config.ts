@@ -159,7 +159,7 @@ export default defineConfig({
     {
       requestLibPath: "import { request } from '@umijs/max'",
       // 或者使用在线的版本
-      schemaPath: `${defaultSettings.target}/v3/api-docs`,
+      schemaPath: `${defaultSettings.API_ADDRESS}/v3/api-docs`,
       // schemaPath: join(__dirname, 'oneapi.json'),
       mock: false,
     },

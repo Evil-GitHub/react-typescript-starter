@@ -1,6 +1,6 @@
-﻿import type { RequestOptions } from '@@/plugin-request/request';
-import type { RequestConfig } from '@umijs/max';
+﻿import type { RequestConfig } from '@umijs/max';
 import { history } from '@umijs/max';
+import defaultSettings from 'config/defaultSettings';
 import dayjs from 'dayjs';
 
 import { message } from 'antd';
@@ -46,10 +46,11 @@ export const errorConfig: RequestConfig = {
 
   // 请求拦截器
   requestInterceptors: [
-    (config: RequestOptions) => {
+    (config: any) => {
       const { headers, url, ...restProps } = config;
       const isLogin = url?.includes('/login');
-      const token = localStorage.getItem('EVIL_PRO_CLI_TOKEN') || '';
+      const token = localStorage.getItem(defaultSettings.TOKEN_KEY) || '';
+
       const time = dayjs(`${new Date()}`).format('YYYYMMDDHHmmsssss');
       return isLogin
         ? config
@@ -79,7 +80,7 @@ export const errorConfig: RequestConfig = {
       // token失效
       if ([403].includes(data?.code)) {
         message.error(data?.message || 'token失效！');
-        localStorage.setItem('EVIL_PRO_CLI_TOKEN', '');
+        localStorage.setItem(defaultSettings.TOKEN_KEY, '');
         history.replace({
           pathname: loginPath,
         });
