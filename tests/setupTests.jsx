@@ -7,7 +7,7 @@
 
 global.localStorage = localStorageMock;
 
-Object.defineProperty(URL, 'createObjectURL', {
+Object.defineProperty(URL, "createObjectURL", {
   writable: true,
   value: jest.fn(),
 });
@@ -25,10 +25,10 @@ class Worker {
 window.Worker = Worker;
 
 /* eslint-disable global-require */
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   // ref: https://github.com/ant-design/ant-design/issues/18774
   if (!window.matchMedia) {
-    Object.defineProperty(global.window, 'matchMedia', {
+    Object.defineProperty(global.window, "matchMedia", {
       writable: true,
       configurable: true,
       value: jest.fn(() => ({
@@ -39,11 +39,11 @@ if (typeof window !== 'undefined') {
     });
   }
   if (!window.matchMedia) {
-    Object.defineProperty(global.window, 'matchMedia', {
+    Object.defineProperty(global.window, "matchMedia", {
       writable: true,
       configurable: true,
       value: jest.fn((query) => ({
-        matches: query.includes('max-width'),
+        matches: query.includes("max-width"),
         addListener: jest.fn(),
         removeListener: jest.fn(),
       })),
@@ -51,12 +51,16 @@ if (typeof window !== 'undefined') {
   }
 }
 const errorLog = console.error;
-Object.defineProperty(global.window.console, 'error', {
+Object.defineProperty(global.window.console, "error", {
   writable: true,
   configurable: true,
   value: (...rest) => {
-    const logStr = rest.join('');
-    if (logStr.includes('Warning: An update to %s inside a test was not wrapped in act(...)')) {
+    const logStr = rest.join("");
+    if (
+      logStr.includes(
+        "Warning: An update to %s inside a test was not wrapped in act(...)"
+      )
+    ) {
       return;
     }
     errorLog(...rest);

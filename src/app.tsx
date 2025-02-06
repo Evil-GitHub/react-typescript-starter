@@ -1,24 +1,24 @@
-import { AvatarDropdown, AvatarName, Footer } from '@/components';
-import { LinkOutlined } from '@ant-design/icons';
-import type { Settings as LayoutSettings } from '@ant-design/pro-components';
-import type { RunTimeLayoutConfig } from '@umijs/max';
-import { Link, history } from '@umijs/max';
-import defaultSettings from '../config/defaultSettings';
-import UnAccessible from './pages/403';
-import { errorConfig } from './requestErrorConfig';
-const isDev = process.env.NODE_ENV === 'development';
-const loginPath = '/user/login';
+import { AvatarDropdown, AvatarName, Footer } from "@/components";
+import { LinkOutlined } from "@ant-design/icons";
+import type { Settings as LayoutSettings } from "@ant-design/pro-components";
+import type { RunTimeLayoutConfig } from "@umijs/max";
+import { Link, history } from "@umijs/max";
+import defaultSettings from "../config/defaultSettings";
+import UnAccessible from "./pages/403";
+import { errorConfig } from "./requestErrorConfig";
+const isDev = process.env.NODE_ENV === "development";
+const loginPath = "/user/login";
 
 // 主题css 变量注入
 
-import { ConfigProvider } from 'antd';
-import { waitTime } from './pages/EarningsComparison/utils';
+import { ConfigProvider } from "antd";
+import { waitTime } from "./utils";
 ConfigProvider.config({
   theme: {
-    primaryColor: '#13c2c2',
-    successColor: '#52c41a',
-    errorColor: '#ff4d4f',
-    warningColor: '#faad14',
+    primaryColor: "#13c2c2",
+    successColor: "#52c41a",
+    errorColor: "#ff4d4f",
+    warningColor: "#faad14",
   },
 });
 
@@ -34,31 +34,34 @@ export async function getInitialState(): Promise<{
     try {
       await waitTime(1000);
       return {
-        name: '李开心',
-        avatar: 'https://api.dicebear.com/7.x/miniavs/svg?seed=1',
-        userid: '52EbC20E-20fd-74CE-337B-a5F69deeE871',
-        email: 's.cbbvov@ccl.lu',
-        signature: '型几据院但要指交管象引到此。',
-        title: '员对流面效原会从成些单声场次气。',
-        group: '服务技术部',
+        name: "李开心",
+        avatar: "https://api.dicebear.com/7.x/miniavs/svg?seed=1",
+        userid: "52EbC20E-20fd-74CE-337B-a5F69deeE871",
+        email: "s.cbbvov@ccl.lu",
+        signature: "型几据院但要指交管象引到此。",
+        title: "员对流面效原会从成些单声场次气。",
+        group: "服务技术部",
         tags: [
-          { key: 1, label: '名望程序员' },
-          { key: 2, label: '阳光少年' },
-          { key: 3, label: '名望程序员' },
-          { key: 4, label: '程序员' },
-          { key: 5, label: '专注设计' },
-          { key: 6, label: '海纳百川' },
-          { key: 7, label: '专注设计' },
-          { key: 8, label: '名望程序员' },
-          { key: 9, label: '程序员' },
+          { key: 1, label: "名望程序员" },
+          { key: 2, label: "阳光少年" },
+          { key: 3, label: "名望程序员" },
+          { key: 4, label: "程序员" },
+          { key: 5, label: "专注设计" },
+          { key: 6, label: "海纳百川" },
+          { key: 7, label: "专注设计" },
+          { key: 8, label: "名望程序员" },
+          { key: 9, label: "程序员" },
         ],
         notifyCount: 78,
         unreadCount: 86,
-        country: '墨西哥',
-        access: '太间究调难积车龙好全小京导类采低识。',
-        geographic: { province: { label: '湖南省', key: 10 }, city: { label: '洛阳市', key: 11 } },
-        address: '江苏省 徐州市 睢宁县',
-        phone: '11255057362',
+        country: "墨西哥",
+        access: "太间究调难积车龙好全小京导类采低识。",
+        geographic: {
+          province: { label: "湖南省", key: 10 },
+          city: { label: "洛阳市", key: 11 },
+        },
+        address: "江苏省 徐州市 睢宁县",
+        phone: "11255057362",
       };
       // const msg = await queryCurrentUser();
       // return msg?.data;

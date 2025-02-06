@@ -12,29 +12,29 @@
  */
 export default [
   {
-    path: '/user',
+    path: "/user",
     layout: false,
     routes: [
       {
-        name: 'login',
-        path: '/user/login',
-        component: './User/Login',
+        name: "login",
+        path: "/user/login",
+        component: "./User/Login",
       },
     ],
   },
   {
-    path: '/earnings-comparison',
-    name: '财报对比',
-    icon: 'FundView',
-    component: './EarningsComparison',
+    path: "/dashboard",
+    name: "dashboard",
+    icon: "dashboard",
+    component: "./Dashboard",
   },
   {
-    path: '/',
-    redirect: '/earnings-comparison',
+    path: "/",
+    redirect: "/Dashboard",
   },
   {
-    path: '*',
+    path: "*",
     layout: false,
-    component: './404',
+    component: "./404",
   },
 ];

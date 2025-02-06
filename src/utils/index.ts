@@ -1,6 +1,19 @@
-import { message } from 'antd';
-import dayjs from 'dayjs';
-import { Key, SyntheticEvent } from 'react';
+import { message } from "antd";
+import dayjs from "dayjs";
+import { Key, SyntheticEvent } from "react";
+
+export const waitTimePromise = async (time: number = 100) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(true);
+    }, time);
+  });
+};
+
+export const waitTime = async (time: number = 100) => {
+  await waitTimePromise(time);
+};
+
 /**
  * 取消事件冒泡
  * @param e
@@ -11,7 +24,7 @@ export function cancelBubble(e: SyntheticEvent) {
 }
 
 export function renderEmpty(value: string | number | undefined) {
-  return value ?? '-';
+  return value ?? "-";
 }
 
 /**
@@ -46,7 +59,7 @@ export const getTableParams = (params: Record<string, any>) => {
 // 接口修改、新增成功 回调返回上一级
 export const onSuccessAndGoBack = (res: Record<string, any>) => {
   if (res.code === 200) {
-    message.success('操作成功！');
+    message.success("操作成功！");
     history.go(-1);
   }
 };
@@ -54,10 +67,10 @@ export const onSuccessAndGoBack = (res: Record<string, any>) => {
 // 接口修改、新增成功 刷新页面
 export const onSuccessAndRefresh = (
   res: Record<string, any>,
-  refresh: ((delta?: number | undefined) => void) | any,
+  refresh: ((delta?: number | undefined) => void) | any
 ) => {
   if (res.code === 200) {
-    message.success('保存成功！');
+    message.success("保存成功！");
     refresh();
   }
 };
@@ -79,13 +92,13 @@ export const option2enum = (options: { value: string; label: string }[]) => {
  */
 
 export const formatDate = (text: string | number) => {
-  if (!text) return '-';
-  return dayjs(text).format('YYYY-MM-DD HH:mm:ss');
+  if (!text) return "-";
+  return dayjs(text).format("YYYY-MM-DD HH:mm:ss");
 };
 
 export const queryPagingTable = async <U>(
   params: { [k: string]: any },
-  api?: (data: U) => Promise<Record<string, any>>,
+  api?: (data: U) => Promise<Record<string, any>>
 ) => {
   if (!api)
     return {
@@ -126,7 +139,7 @@ export const getRandomId = () => {
  * @returns
  */
 export function renderDescriptions(value: string | number | undefined) {
-  return value ?? '-';
+  return value ?? "-";
 }
 
 /**
@@ -140,7 +153,7 @@ export function renderDescriptions(value: string | number | undefined) {
 export const queryFormData = async <U>(
   params: { [k: string]: any },
   ready: boolean,
-  api?: (data: U) => Promise<Record<string, any>>,
+  api?: (data: U) => Promise<Record<string, any>>
 ) => {
   if (!ready) return {};
   if (!api) return {};
@@ -160,8 +173,11 @@ export const queryFormData = async <U>(
 
 export const queryOptions = async <U>(
   params: { [k: string]: any },
-  api?: (data: U, options?: Record<string, any>) => Promise<Record<string, any>>,
-  options?: { [key: string]: any },
+  api?: (
+    data: U,
+    options?: Record<string, any>
+  ) => Promise<Record<string, any>>,
+  options?: { [key: string]: any }
 ) => {
   if (!api) return [];
 
@@ -175,7 +191,7 @@ export const queryOptions = async <U>(
 // 查询审批分页
 export const queryApprovalTable = async <U>(
   params: { [k: string]: any },
-  api?: (data: U) => Promise<Record<string, any>>,
+  api?: (data: U) => Promise<Record<string, any>>
 ) => {
   if (!api)
     return {
@@ -204,7 +220,7 @@ export const queryApprovalTable = async <U>(
  */
 export const groupedData = <T extends Record<string, any>, K extends keyof T>(
   arr: T[],
-  groupingFields: K,
+  groupingFields: K
 ) => {
   return arr.reduce((result, current) => {
     const fields = current[groupingFields];
@@ -223,8 +239,8 @@ export const groupedData = <T extends Record<string, any>, K extends keyof T>(
  * @returns
  */
 export const calculatePercentage = (val: number, total: number) => {
-  if (typeof val !== 'number' || typeof total !== 'number' || total === 0) {
-    return '';
+  if (typeof val !== "number" || typeof total !== "number" || total === 0) {
+    return "";
   }
 
   // 计算百分比
@@ -234,7 +250,9 @@ export const calculatePercentage = (val: number, total: number) => {
   const hasDecimal = percentage % 1 !== 0;
 
   // 根据有无小数来处理结果
-  const formattedPercentage = hasDecimal ? percentage.toFixed(2) : Math.round(percentage);
+  const formattedPercentage = hasDecimal
+    ? percentage.toFixed(2)
+    : Math.round(percentage);
 
   return formattedPercentage;
 };
@@ -248,12 +266,12 @@ export const getGradientColorFromCharCode = (charCode: number) => {
   if (isNaN(charCode)) return {};
   const hue = charCode % 360;
   const colorArray = [
-    ['#21D4FD', '#B721FF'],
-    ['#4158D0', '#C850C0'],
-    ['#5BDED1', '#DC32B9'],
-    ['#36A415', '#1F65A6'],
-    ['#FBDA61', '#FF5ACD'],
-    ['#3EECAC', '#EE74E1'],
+    ["#21D4FD", "#B721FF"],
+    ["#4158D0", "#C850C0"],
+    ["#5BDED1", "#DC32B9"],
+    ["#36A415", "#1F65A6"],
+    ["#FBDA61", "#FF5ACD"],
+    ["#3EECAC", "#EE74E1"],
   ];
   // 根据 charCode 计算索引
   const combinationIndex = charCode % colorArray.length;
@@ -264,8 +282,8 @@ export const getGradientColorFromCharCode = (charCode: number) => {
   return {
     backgroundColor: color1,
     backgroundImage: `linear-gradient(${hue}deg, ${color1} 0%, ${color2} 100%)`,
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    border: 'none',
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    border: "none",
   };
 };

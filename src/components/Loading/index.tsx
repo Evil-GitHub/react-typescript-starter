@@ -1,5 +1,5 @@
-import { Spin, Typography } from 'antd';
-import styles from './index.less';
+import { Spin, Typography } from "antd";
+import styles from "./index.less";
 
 const Loading = () => {
   return (

@@ -1,14 +1,14 @@
 // https://umijs.org/config/
-import { defineConfig } from '@umijs/max';
-import defaultSettings from './defaultSettings';
-import proxy from './proxy';
-import routes from './routes';
+import { defineConfig } from "@umijs/max";
+import defaultSettings from "./defaultSettings";
+import proxy from "./proxy";
+import routes from "./routes";
 
-const { REACT_APP_ENV = 'dev' } = process.env;
+const { REACT_APP_ENV = "dev" } = process.env;
 
 export default defineConfig({
   alias: {
-    config: '/config',
+    config: "/config",
   },
   // 解决刷新 404 找不到该页面的情况。
   exportStatic: {
@@ -47,7 +47,7 @@ export default defineConfig({
   theme: {
     // 如果不想要 configProvide 动态设置主题需要把这个设置为 default
     // 只有设置为 variable， 才能使用 configProvide 动态设置主色调
-    'root-entry-name': 'variable',
+    "root-entry-name": "variable",
   },
   /**
    * @name moment 的国际化配置
@@ -80,7 +80,7 @@ export default defineConfig({
    * @doc https://umijs.org/docs/max/data-flow#%E5%85%A8%E5%B1%80%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81
    */
   initialState: {
-    loading: '@/components/Loading',
+    loading: "@/components/Loading",
   },
   /**
    * @name layout 插件
@@ -97,15 +97,15 @@ export default defineConfig({
    * @doc https://umijs.org/docs/max/moment2dayjs
    */
   moment2dayjs: {
-    preset: 'antd',
-    plugins: ['duration'],
+    preset: "antd",
+    plugins: ["duration"],
   },
   /**
    * @name 国际化插件
    * @doc https://umijs.org/docs/max/i18n
    */
   locale: {
-    default: 'zh-CN',
+    default: "zh-CN",
     antd: false,
     // default true, when it is true, will use `navigator.language` overwrite default
     baseNavigator: true,
@@ -122,9 +122,9 @@ export default defineConfig({
         borderRadiusLG: 4,
         borderRadius: 4,
         borderRadiusXS: 4,
-        colorPrimary: '#13c2c2',
-        colorBgContainerDisabled: 'rgba(0, 0, 0, 0.02)',
-        colorTextDisabled: 'rgba(0, 0, 0, 0.45)',
+        colorPrimary: "#13c2c2",
+        colorBgContainerDisabled: "rgba(0, 0, 0, 0.02)",
+        colorTextDisabled: "rgba(0, 0, 0, 0.45)",
       },
     },
   },
@@ -146,10 +146,10 @@ export default defineConfig({
    */
   headScripts: [
     // 解决首次加载时白屏的问题
-    { src: '/scripts/loading.js', async: true },
+    { src: "/scripts/loading.js", async: true },
   ],
   //================ pro 插件配置 =================
-  presets: ['umi-presets-pro'],
+  presets: ["umi-presets-pro"],
   /**
    * @name openAPI 插件的配置
    * @description 基于 openapi 的规范生成serve 和mock，能减少很多样板代码
@@ -165,17 +165,19 @@ export default defineConfig({
     },
   ],
   mfsu: {
-    strategy: 'normal',
+    strategy: "normal",
   },
   esbuildMinifyIIFE: true,
   requestRecord: {},
   chainWebpack: (config, { webpack }) => {
-    config.plugin('define').use(webpack.DefinePlugin, [
+    config.plugin("define").use(webpack.DefinePlugin, [
       {
-        'process.env.FRONTEND_BRANCH_NAME': JSON.stringify(process.env.FRONTEND_BRANCH_NAME),
-        'process.env.COMMIT_HASH': JSON.stringify(process.env.VERSION),
+        "process.env.FRONTEND_BRANCH_NAME": JSON.stringify(
+          process.env.FRONTEND_BRANCH_NAME
+        ),
+        "process.env.COMMIT_HASH": JSON.stringify(process.env.VERSION),
         // microservice 微服务版本 、standalone 单机版
-        'process.env.APP_MODE': JSON.stringify(process.env.APP_MODE),
+        "process.env.APP_MODE": JSON.stringify(process.env.APP_MODE),
       },
     ]);
   },

@@ -1,9 +1,9 @@
-﻿import type { RequestConfig } from '@umijs/max';
-import { history } from '@umijs/max';
-import defaultSettings from 'config/defaultSettings';
-import dayjs from 'dayjs';
+﻿import type { RequestConfig } from "@umijs/max";
+import { history } from "@umijs/max";
+import defaultSettings from "config/defaultSettings";
+import dayjs from "dayjs";
 
-import { message } from 'antd';
+import { message } from "antd";
 
 // 与后端约定的响应数据格式
 interface ResponseStructure {
@@ -36,10 +36,10 @@ export const errorConfig: RequestConfig = {
         // 请求已经成功发起，但没有收到响应
         // \`error.request\` 在浏览器中是 XMLHttpRequest 的实例，
         // 而在node.js中是 http.ClientRequest 的实例
-        message.error('没有反应，请重试！');
+        message.error("没有反应，请重试！");
       } else {
         // 发送请求时出了点问题
-        message.error('请求错误，请重试！');
+        message.error("请求错误，请重试！");
       }
     },
   },
@@ -48,10 +48,10 @@ export const errorConfig: RequestConfig = {
   requestInterceptors: [
     (config: any) => {
       const { headers, url, ...restProps } = config;
-      const isLogin = url?.includes('/login');
-      const token = localStorage.getItem(defaultSettings.TOKEN_KEY) || '';
+      const isLogin = url?.includes("/login");
+      const token = localStorage.getItem(defaultSettings.TOKEN_KEY) || "";
 
-      const time = dayjs(`${new Date()}`).format('YYYYMMDDHHmmsssss');
+      const time = dayjs(`${new Date()}`).format("YYYYMMDDHHmmsssss");
       return isLogin
         ? config
         : {
@@ -60,7 +60,7 @@ export const errorConfig: RequestConfig = {
             headers: {
               ...headers,
               Authorization: isLogin ? null : token,
-              'request-id': time,
+              "request-id": time,
             },
           };
     },
@@ -73,14 +73,14 @@ export const errorConfig: RequestConfig = {
       const { data, config, status } = response as unknown as ResponseStructure;
       if (config.skipErrorHandler) return response;
       if (status !== 200 || data?.code !== 200) {
-        message.error(data?.message || '请求失败！');
+        message.error(data?.message || "请求失败！");
       }
 
-      const loginPath = '/user/login';
+      const loginPath = "/user/login";
       // token失效
       if ([403].includes(data?.code)) {
-        message.error(data?.message || 'token失效！');
-        localStorage.setItem(defaultSettings.TOKEN_KEY, '');
+        message.error(data?.message || "token失效！");
+        localStorage.setItem(defaultSettings.TOKEN_KEY, "");
         history.replace({
           pathname: loginPath,
         });

@@ -1,6 +1,6 @@
-import { passwordReg } from '@/utils/validator';
-import { Form, Input } from 'antd';
-import React from 'react';
+import { passwordReg } from "@/utils/validator";
+import { Form, Input } from "antd";
+import React from "react";
 
 const ChangePassword = React.forwardRef<any, any>((props, ref) => {
   return (
@@ -11,11 +11,11 @@ const ChangePassword = React.forwardRef<any, any>((props, ref) => {
         rules={[
           {
             required: true,
-            message: '请输入密码！',
+            message: "请输入密码！",
           },
           {
             pattern: passwordReg,
-            message: '密码必须由大小写字母、数字、特殊字符组成,且不小于8位',
+            message: "密码必须由大小写字母、数字、特殊字符组成,且不小于8位",
           },
         ]}
       >
@@ -27,14 +27,14 @@ const ChangePassword = React.forwardRef<any, any>((props, ref) => {
         rules={[
           {
             required: true,
-            message: '确认密码为必填项',
+            message: "确认密码为必填项",
           },
           ({ getFieldValue }) => ({
             validator(_, value) {
-              if (!value || getFieldValue('password') === value) {
+              if (!value || getFieldValue("password") === value) {
                 return Promise.resolve();
               }
-              return Promise.reject(new Error('您输入的两个密码不匹配!'));
+              return Promise.reject(new Error("您输入的两个密码不匹配!"));
             },
           }),
         ]}
