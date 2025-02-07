@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const newTitle = process.argv[2] || 'Evil Pro Cli';
+const newTitle = process.argv[2] || 'Evil Pro';
 
 // 修改 config/config.ts 文件中的 name 和 title
 function updateDefaultSettings() {
