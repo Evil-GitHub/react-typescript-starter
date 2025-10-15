@@ -1,7 +1,9 @@
 import { ProLayoutProps } from '@ant-design/pro-components';
+import { ENV_CONFIG } from './env';
 
 /**
- * @name
+ * @name 默认设置配置
+ * @description 使用环境变量进行配置，支持多环境部署
  */
 const defaultSettings: ProLayoutProps & {
   pwa?: boolean;
@@ -21,9 +23,9 @@ const defaultSettings: ProLayoutProps & {
   fixedHeader: false,
   fixSiderbar: true,
   colorWeak: false,
-  title: 'XXXX系统',
-  pwa: true,
-  logo: '/images/logo.png',
+  title: ENV_CONFIG.APP_TITLE,
+  pwa: ENV_CONFIG.ENABLE_PWA,
+  logo: ENV_CONFIG.LOGO_PATH,
   iconfontUrl: '',
   token: {
     sider: {
@@ -44,9 +46,9 @@ const defaultSettings: ProLayoutProps & {
     autoClose: false,
     locale: false,
   },
-  API_ADDRESS: 'http://192.168.100.102:32355', // api 文档地址
-  REQUEST_ADDRESS: 'http://192.168.100.102:32355', // 请求地址
-  TOKEN_KEY: 'RKLINK_TOKEN',
+  API_ADDRESS: ENV_CONFIG.API_BASE_URL, // api 文档地址
+  REQUEST_ADDRESS: ENV_CONFIG.REQUEST_BASE_URL, // 请求地址
+  TOKEN_KEY: ENV_CONFIG.TOKEN_KEY,
 };
 
 export default defaultSettings;

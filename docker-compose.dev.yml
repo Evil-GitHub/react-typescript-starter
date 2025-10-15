@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  evil-pro-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - REACT_APP_ENV=dev
+      - REACT_APP_API_BASE_URL=http://localhost:8080
+      - REACT_APP_REQUEST_BASE_URL=http://localhost:8080
+      - REACT_APP_TITLE=Evil Pro (Dev)
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    command: npm run start:dev
+    networks:
+      - dev-network
+
+  # 可选：添加后端服务用于开发
+  # evil-pro-backend:
+  #   image: your-backend-dev-image:latest
+  #   ports:
+  #     - "8080:8080"
+  #   environment:
+  #     - NODE_ENV=development
+  #     - DATABASE_URL=postgresql://user:pass@db:5432/evil_pro_dev
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - dev-network
+
+  # 可选：添加数据库服务
+  # db:
+  #   image: postgres:13
+  #   environment:
+  #     - POSTGRES_DB=evil_pro_dev
+  #     - POSTGRES_USER=user
+  #     - POSTGRES_PASSWORD=pass
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - dev-network
+
+  # 可选：添加 Redis 服务
+  # redis:
+  #   image: redis:6-alpine
+  #   ports:
+  #     - "6379:6379"
+  #   networks:
+  #     - dev-network
+
+networks:
+  dev-network:
+    driver: bridge
+
+# volumes:
+#   postgres_data:
