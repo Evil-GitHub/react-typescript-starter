@@ -169,6 +169,7 @@ export default defineConfig({
   },
   esbuildMinifyIIFE: true,
   requestRecord: {},
+  analyze: false,
   chainWebpack: (config, { webpack }) => {
     config.plugin('define').use(webpack.DefinePlugin, [
       {

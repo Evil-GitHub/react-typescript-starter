@@ -9,18 +9,7 @@ import { errorConfig } from './requestErrorConfig';
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
-// 主题css 变量注入
-
-import { ConfigProvider } from 'antd';
 import { waitTime } from './utils';
-ConfigProvider.config({
-  theme: {
-    primaryColor: '#13c2c2',
-    successColor: '#52c41a',
-    errorColor: '#ff4d4f',
-    warningColor: '#faad14',
-  },
-});
 
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
@@ -106,7 +95,6 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
         history.push(loginPath);
       }
     },
-
     links: isDev
       ? [
           <Link key="openapi" to="/umi/plugin/openapi" target="_blank">
